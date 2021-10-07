@@ -11,10 +11,12 @@ function App() {
   }
 
   function addItem() {
-    setItems((prevItems) => {
-      return [...prevItems, inputText];
-    });
+    setItems((prevItems) => [...prevItems, inputText]);
     setInputText("");
+  }
+
+  function deleteItem(id) {
+    setItems((prevItems) => prevItems.filter((item, index) => index !== id));
   }
 
   return (
@@ -29,7 +31,7 @@ function App() {
         </button>
       </div>
 
-      <ToDoItem items={items} />
+      <ToDoItem items={items} onChecked={deleteItem} />
     </div>
   );
 }
